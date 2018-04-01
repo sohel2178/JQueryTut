@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>JQuery Tutorial</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <style>
+        body{
+            font-size: 17px;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f4f4;
+            line-height: 1.5em;
+        }
+
+        header{
+            background: #333;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 4px solid black;
+            margin-bottom: 10px;
+        }
+
+        #container{
+            width: 90%;
+            margin: auto;
+            padding: 10px;
+        }
+
+        .my-class{
+            width: 80%;
+            margin: auto;
+            padding: 10px;
+            border: 2px solid orange;
+            margin-top: 20px;
+        }
+
+        .my-class h2{
+            background: midnightblue;
+            color: white;
+            padding: 10px;
+        }
+
+        form input{
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>JQuery Crush Course</h1>
+    </header>
+
+    <div id="container">
+
+        <div id="result"></div>
+
+        <h3>Add Post</h3>
+        <form id="postForm" action="https://jsonplaceholder.typicode.com/posts">
+            <input type="text" id="title" placeholder="Title">
+            <textarea id="body" placeholder="Body"></textarea><br>
+            <input type="submit" value="Submit">
+        </form>
+
+        <form id="testForm">
+            <input type="text" id="name" placeholder="Genre">
+            <input type="submit" value="Submit">
+        </form>
+
+    </div>
+
+    <script>
+
+        $(document).ready(()=>{
+            /* $('#result').load('test.html',(resText,statusTxt,xhr)=>{
+                console.log(resText);
+                console.log(statusTxt);
+                console.log(xhr.statusTxt);
+            }); */
+
+            // Get is a Another Useful Method 
+
+            /* $.get('test.html',(data)=>{
+                $('#result').html(data);
+            }) */
+
+            /* $.getJSON('user.json',(data)=>{
+                
+                $.each(data,(i,val)=>{
+                    $('#result').append('<p>'+val.firstname+" " +val.lastname+'</p>');
+                    $('#result').append('<p>'+val.email+'</p>');
+                    $('#result').append('<hr>');
+                })
+            }) */
+
+            /* $.getJSON('post.json',(data)=>{
+                $.each(data,(i,val)=>{
+
+                    var $div = $('<div>',{'class':'my-class'});
+
+                    $div.html('<h2>'+val.title+'</h2>'+'<hr>'+'<p>'+val.body+'</p>');
+
+                    $('#result').append($div);
+
+
+
+                    //$div.append('<h4>'+val.title+'</h4>');
+
+                   // $('#result').append($div);
+
+                   /*  $('#result').append('<p>'+val.title+'</p>');
+                    $('#result').append('<hr>');
+                    $('#result').append('<p>'+val.body+'</p>');
+                   
+
+                    
+                })
+            }) 
+            */
+
+            //Ajax Way Get Request
+
+           /*  $.ajax({
+                method:'GET',
+                url:'https://jsonplaceholder.typicode.com/posts',
+                dataType:'json'
+            }).done((data)=>{
+
+                $.each(data,(i,val)=>{
+                    var $div = $('<div>',{'class':'my-class'});
+                    $div.html('<h2>'+val.title+'</h2>'+'<hr>'+'<p>'+val.body+'</p>');
+                    $('#result').append($div);
+                })
+
+            }); */
+
+            // Post Method Example
+
+            $('#postForm').submit((e)=>{
+                e.preventDefault();
+
+                var ti = $('#title').val();
+                var bod = $('#body').val();
+
+                var url = 'https://jsonplaceholder.typicode.com/posts';
+                console.log(url);
+
+                $.post(url,{title:ti,body:bod})
+                    .done((data)=>{
+                        console.log('Post Saved');
+                        console.log(data);
+                    });
+            });
+
+            $('#testForm').submit((e)=>{
+                e.preventDefault();
+
+                var nameVal = $('#name').val();
+                var url = 'https://sohel-book-store.herokuapp.com/api/genres';
+
+                $.ajax({
+                    type:'POST',
+                    url:'https://sohel-book-store.herokuapp.com/api/genres',
+                    dataType:'json',
+                    data:{name:nameVal}
+
+                }).done((data)=>{
+                    console.log(data);
+                });
+            });
+        });
+
+
+     
+    
+    </script>
+    
+</body>
+</html>

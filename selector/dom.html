@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>JQuery Tutorial</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <style>
+        body{
+            font-size: 17px;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f4f4;
+            line-height: 1.5em;
+        }
+
+        header{
+            background: #333;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 4px solid black;
+            margin-bottom: 10px;
+        }
+
+        #container{
+            width: 90%;
+            margin: auto;
+            padding: 10px;
+        }
+
+        .myClass{
+            color: blue;
+            background: black;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>JQuery Crush Course|DOM Manipulation</h1>
+    </header>
+
+    <div id="container">
+
+        <button id="btn1">Button 1</button>
+        <p class="para1">This is a Paragraph</p>
+        <p class="para2">This is another Paragraph</p>
+        <div id="myDiv"></div>
+
+        <input type="text" id="newItem">
+
+        <ul id="list">
+            <li>List Item 1</li>
+            <li>List Item 2</li>
+            <li>List Item 3</li>
+            <li>List Item 4</li>
+            <li>List Item 5</li>
+        </ul>
+
+        <a href="http://google.com">Google</a>
+
+        
+
+        
+
+    </div>
+
+    <script>
+
+        $(document).ready(()=>{
+
+            /* $('p.para1').css({color:'red',background:'#ccc'});
+            //$('p.para2').addClass('myClass');
+            $('p.para2').removeClass('myClass');
+
+            // Toggle Class
+
+            $('#btn1').click(()=>{
+                $('p.para2').toggleClass('myClass');
+
+                
+
+            })
+
+            $('#myDiv').text('Hello Sohel');
+            $('#myDiv').html('<h3>Hello Sohel</h3>');
+
+            // Also Get the Value
+            alert($('#myDiv').text()); */
+
+            /* $('ul').append('<li>Append New Item</li>');
+            $('ul').prepend('<li>Prepend New Item</li>');
+
+            //$('<span>.Hi Sohel<span>').appendTo('.para1');
+            $('<span>Hi Sohel<span>').prependTo('.para1');
+
+            // Before and After 
+
+            $('ul').before('<h4>Hi I am Header 4 befor UL</h4> ');
+            $('ul').after('<h4>Hi I am Header 4 after UL</h4> ');
+
+            // Toremove Element use detach
+            // To Empty Content Use empty
+
+            //$('ul').empty();
+            //$('ul').detach();
+
+            // Working with Attributes
+
+            //set Target Attribute
+            $('a').attr('target','_blank');
+            //alert($('a').attr('href'));
+
+            //Remove Attr
+            //$('a').removeAttr('target');
+
+            // Wrap Elemnt
+            //We want to Wrap paragraph into H1 Tag
+
+            $('p').wrap('<h1>'); */
+
+
+            // When Key Up on Input
+            $('#newItem').keyup((e)=>{
+                var code = e.which;
+
+                if(code==13){
+                    e.preventDefault();
+                    $('ul').append('<li>'+e.target.value+'</li>');
+                }
+            });
+
+
+            // Working on Array
+
+            var myArray = ['Sohel','Sumi','Rony'];
+
+            $.each(myArray,function(i,val){
+                $('ul').append('<li>'+val+'</li>');
+                console.log(i);
+            });
+
+
+            // Get List item store in a Array
+
+            var newArr = $('ul li').toArray();
+            //console.log(newArr);
+
+            $.each(newArr,function(i,val){
+                console.log(val.innerHTML);
+            });
+
+
+
+
+
+
+        })
+
+
+    
+    </script>
+    
+</body>
+</html>
